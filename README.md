@@ -106,3 +106,62 @@ O processo levou **3 ciclos de revisão sobre os ADRs** (geração inicial → r
 5. [`docs/TRACKER.md`](docs/TRACKER.md) — de onde veio cada afirmação (consulte quando quiser conferir a origem de qualquer item).
 
 Para auditar qualquer afirmação: pegue o timestamp citado (ex.: `[09:17] Diego`) e procure-o na `TRANSCRICAO.md` — todas as 89 citações únicas do pacote foram verificadas dessa forma antes da entrega.
+
+## Critérios de Aceite
+
+Checklist do [enunciado](docs/ENUNCIADO.md), verificado item por item na revisão final (com apoio de verificações automatizadas por grep):
+
+### PRD (`docs/PRD.md`)
+
+- [x] Arquivo existe e está em Markdown
+- [x] Contém todas as seções obrigatórias (Resumo e contexto; Problema e motivação; Público-alvo e cenários de uso; Objetivos e métricas; Escopo incluso e fora de escopo; Requisitos funcionais; Requisitos não funcionais; Decisões e trade-offs; Dependências; Riscos e mitigação; Critérios de aceitação; Estratégia de testes)
+- [x] Identifica no mínimo 8 requisitos funcionais discutidos na reunião — **12 RFs**, todos com timestamp
+- [x] Inclui pelo menos 1 objetivo com métrica e meta quantitativa — **3 objetivos** (entrega < 10 s; 3 sprints/fim de novembro; 100% dos eventos)
+- [x] "Fora de escopo" com pelo menos 2 itens explicitamente descartados/adiados na reunião — **6 itens**, com timestamp
+- [x] "Riscos" com pelo menos 2 riscos com probabilidade, impacto e mitigação — **4 riscos**
+
+### RFC (`docs/RFC.md`)
+
+- [x] Arquivo existe e está em Markdown, conciso (2–4 páginas — ~1.350 palavras, ≈3 páginas)
+- [x] Contém todas as seções obrigatórias (Metadados com os participantes reais como revisores; TL;DR; Contexto e problema; Proposta técnica; Alternativas consideradas; Questões em aberto; Impacto e riscos; Decisões relacionadas)
+- [x] Pelo menos 2 alternativas reais descartadas na reunião, com o trade-off do descarte — **6 alternativas**
+- [x] Pelo menos 2 questões em aberto levantadas na reunião — **5 questões**
+- [x] Referencia com link pelo menos 2 ADRs — **os 7 ADRs**
+
+### FDD (`docs/FDD.md`)
+
+- [x] Arquivo existe e está em Markdown
+- [x] Contém todas as seções obrigatórias, incluindo os 4 fluxos detalhados (outbox, worker, retry, DLQ)
+- [x] "Contratos públicos" com pelo menos 4 endpoints HTTP com payload de exemplo (request e response) e status codes — **7 endpoints + o contrato outbound do webhook**
+- [x] Matriz de erros com códigos no padrão `WEBHOOK_*`
+- [x] "Integração com o sistema existente" com pelo menos 4 caminhos de arquivo reais — **10 caminhos verificados** (arquivos futuros sempre marcados "a criar")
+- [x] "Observabilidade" cita métricas, logs e tracing
+
+### ADRs (`docs/adrs/`)
+
+- [x] Entre 5 e 8 arquivos no formato `ADR-NNN-titulo-em-kebab-case.md` — **7 ADRs**
+- [x] Cada ADR com Status, Contexto, Decisão, Alternativas Consideradas e Consequências (positivas e negativas, com trade-off explícito)
+- [x] Conjunto cobre pelo menos 5 das 6 decisões principais — **cobre as 6** (outbox MySQL; retry/backoff/DLQ; HMAC-SHA256 por endpoint; at-least-once com X-Event-Id; worker separado em polling; reuso de padrões) + 1 extra (snapshot do payload)
+- [x] Pelo menos 1 ADR referencia arquivos/módulos/classes do código base — **ADR-001, 002, 004 e 006**
+
+### Tracker (`docs/TRACKER.md`)
+
+- [x] Segue o formato de tabela obrigatório (ID, Documento, Tipo, Conteúdo, Fonte, Localização)
+- [x] Pelo menos 80% dos itens identificáveis dos documentos têm linha — **130 linhas**, varredura de cobertura executada
+- [x] Pelo menos 70% das linhas com Fonte = `TRANSCRICAO` e timestamp válido — **84%** (109/130), todas conferidas por grep
+- [x] Pelo menos 5 linhas com Fonte = `CODIGO` e caminho real — **21 linhas**, caminhos verificados
+
+### README (`README.md`)
+
+- [x] Todas as seções obrigatórias (Sobre o desafio; Ferramentas de IA; Workflow adotado; Prompts customizados; Iterações e ajustes; Como navegar a entrega; Critérios de Aceite)
+- [x] Pelo menos 1 ferramenta de IA listada com o papel — **2 listadas**
+- [x] Pelo menos 2 prompts customizados em blocos de código — **3 prompts**
+- [x] Pelo menos 2 iterações/ajustes concretos descritos — **6 iterações**
+
+### Consistência geral
+
+- [x] Nenhum requisito, decisão ou restrição contradiz a transcrição ou o código (auditoria de coerência dedicada)
+- [x] Nenhum arquivo de código citado é inexistente — os 3 caminhos futuros estão sempre marcados "(a criar)"
+- [x] Nenhum item descartado/adiado aparece como requisito — só em "Fora de escopo", "Questões em aberto", "Alternativas" e "Exclusões"
+- [x] Números e valores consistentes entre PRD, RFC, FDD, ADRs e Tracker
+- [x] `src/`, `prisma/`, `tests/`, `TRANSCRICAO.md` e configurações intocados
