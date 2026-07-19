@@ -1,7 +1,7 @@
 # Da Reunião ao Documento — Processo de Produção dos Design Docs
 
 > Entrega do desafio **"Da Reunião ao Documento: Design Docs Gerados por IA"** do MBA Engenharia de Software com IA (Full Cycle).
-> O enunciado original está preservado em [`docs/ENUNCIADO.md`](docs/ENUNCIADO.md) e no [repositório base](https://github.com/devfullcycle/mba-ia-desafio-design-docs-com-ia).
+> O enunciado original está preservado em [`ENUNCIADO.md`](ENUNCIADO.md) e no [repositório base](https://github.com/devfullcycle/mba-ia-desafio-design-docs-com-ia).
 >
 > **Autora:** Viviane Pereira
 
@@ -85,9 +85,9 @@ O processo levou **3 ciclos de revisão sobre os ADRs** (geração inicial → r
 ```
 .
 ├── README.md                  ← este arquivo (processo de produção)
+├── ENUNCIADO.md               ← enunciado original do desafio
 ├── TRANSCRICAO.md             ← fonte primária (reunião, intocada)
 ├── docs/
-│   ├── ENUNCIADO.md           ← enunciado original do desafio
 │   ├── PRD.md                 ← produto: problema, escopo, requisitos, métricas
 │   ├── RFC.md                 ← arquitetura: proposta, alternativas, questões em aberto
 │   ├── FDD.md                 ← implementação: fluxos, contratos, erros, integração
@@ -108,8 +108,8 @@ O processo levou **3 ciclos de revisão sobre os ADRs** (geração inicial → r
 Para auditar qualquer afirmação: pegue o timestamp citado (ex.: `[09:17] Diego`) e procure-o na `TRANSCRICAO.md` — todas as 89 citações únicas do pacote foram verificadas dessa forma antes da entrega.
 
 ## Critérios de Aceite
-
-Checklist do [enunciado](docs/ENUNCIADO.md), verificado item por item na revisão final (com apoio de verificações automatizadas por grep):
+   
+Checklist do [enunciado](ENUNCIADO.md), verificado item por item na revisão final (com apoio de verificações automatizadas por grep):
 
 ### PRD (`docs/PRD.md`)
 
